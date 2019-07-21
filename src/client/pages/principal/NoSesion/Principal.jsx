@@ -21,8 +21,8 @@ function Principal(props) {
             <p>Tel. 7711 7631</p>
             <p>Cel. 317 335 8963</p>
           </div>
-          <div className='col-8'>{props.children}</div>
-          <div className='col-2'>
+          <div className='col-7'>{props.children}</div>
+          <div className='col-3'>
             <Login />
           </div>
         </div>

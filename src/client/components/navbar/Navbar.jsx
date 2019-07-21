@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar(props) {
-  console.log(props);
   if (props.login) {
     return <h1>Hi</h1>;
   }

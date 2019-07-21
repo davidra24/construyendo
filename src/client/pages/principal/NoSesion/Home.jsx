@@ -2,21 +2,25 @@ import React, { Component, Fragment } from 'react';
 import Navbar from '../../../components/navbar/Navbar';
 import Principal from './Principal';
 
-const render = (props) => {
-  switch (props.location) {
-    case 'root':
-      <h1>Hola mundo</h1>;
-      break;
+
+const handleRender = location => {
+  switch (location) {
+    case '/':
+      return <h1>Hola mundo</h1>;
+    case '/empresa':
+      return <h1>Hola empresa</h1>;
     default:
       break;
   }
 };
 
 function Home(props) {
+  console.log(props);
+  const toRender = handleRender(props.location.pathname);
   return (
     <Fragment>
       <Navbar login={false}>
-        <Principal>{render(props)}</Principal>
+        <Principal>{toRender}</Principal>
       </Navbar>
     </Fragment>
   );

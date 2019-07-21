@@ -3,16 +3,18 @@ import { Route, Link, Switch, HashRouter as Router } from 'react-router-dom';
 import HomeWSesion from '../pages/principal/Sesion/Home';
 import HomeNSesion from '../pages/principal/NoSesion/Home';
 
-function Routes(props) {
-  if (props.session.inicied) {
+class Routes extends Component {
+
+  render(){
+  if (this.props.session.inicied) {
     return (
       <Router>
         <Switch>
           <Route
             exact
             path='/'
-            component={(props) => (
-              <HomeWSesion {...props} onSession={props.onSession} />
+            component={props => (
+              <HomeWSesion {...props} onSession={this.props.onSession} />
             )}
           />
         </Switch>
@@ -25,29 +27,27 @@ function Routes(props) {
           <Route
             exact
             path='/'
-            component={(props) => (
+            component={props => (
               <HomeNSesion
                 {...props}
-                onSession={props.onSession}
-                location='root'
+                onSession={this.props.onSession}
               />
             )}
           />
           <Route
             exact
             path='/empresa'
-            component={(props) => (
+            component={props => (
               <HomeNSesion
                 {...props}
-                onSession={props.onSession}
-                location='empresakkñxñdsy'
+                onSession={this.props.onSession}
               />
             )}
           />
         </Switch>
       </Router>
     );
-  }
+  }}
 }
 
 export default Routes;
