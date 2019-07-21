@@ -2,34 +2,35 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       form: {
         username: '',
-        password: '',
+        password: ''
       },
-      session: { inicied: false, user: null, permits: null },
+      session: { inicied: true, user: 'usuario' }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleLogin = (e) => {
-    localStorage.setItem('session', this.state.session);
+    localStorage.setItem('session', JSON.stringify(this.state.session));
   };
   handleChange = (e) => {
     this.setState({
       form: {
         ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({
-      session: { inicied: true, user: this.state.username, permits: 'a' },
+      session: { inicied: true, user: this.state.username }
     });
     this.handleLogin();
+    this.props.onSession();
   };
   render() {
     return (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Routes from './routes/Routes.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
 import './app.css';
@@ -11,20 +11,20 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      session: { inicied: false, user: null, permits: null },
+      session: { inicied: false, user: null }
     };
-    localStorage.setItem('session', this.state.session);
   }
-  componentDidMount() {}
-  handleChangeSesion() {
+  componentDidMount() {
+    localStorage.setItem('session', JSON.stringify(this.state.session));
+  }
+  handleChangeSesion = () => {
     this.setState({
-      session: localStorage.getItem('session'),
+      session: JSON.parse(localStorage.getItem('session'))
     });
-  }
+  };
   render() {
     return (
       <Routes
-        {...this.props}
         session={this.state.session}
         onSession={this.handleChangeSesion}
       />

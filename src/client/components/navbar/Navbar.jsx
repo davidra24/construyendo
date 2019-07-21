@@ -1,54 +1,86 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar(props) {
-  if (props.login) {
-    return <h1>Hi</h1>;
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.state = {
+      collapsed: true,
+      session: {}
+    };
   }
-  if (!props.login) {
+  componentDidMount() {
+    this.verifyLogin();
+  }
+  verifyLogin = () => {
+    const session = JSON.parse(localStorage.getItem('session'));
+    this.setState({
+      session
+    });
+  };
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+  render() {
+    const collapsed = this.state.collapsed;
+    const classOne = collapsed
+      ? 'collapse navbar-collapse'
+      : 'collapse navbar-collapse show';
+    const classTwo = collapsed
+      ? 'navbar-toggler navbar-toggler-right collapsed'
+      : 'navbar-toggler navbar-toggler-right';
     return (
       <Fragment>
         <h1>Construyendo sueños</h1>
-        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-          <Link className='navbar-brand' to='#'>
+        <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+          <Link className='navbar-brand' to='/'>
             Construyendo sueños
           </Link>
           <button
-            className='navbar-toggler'
+            onClick={this.toggleNavbar}
+            className={`${classTwo}`}
             type='button'
             data-toggle='collapse'
             data-target='#navbarNav'
             aria-controls='navbarNav'
             aria-expanded='false'
-            aria-label='Toggle navigation'>
+            aria-label='Toggle navigation'
+          >
             <span className='navbar-toggler-icon' />
           </button>
-          <div className='collapse navbar-collapse' id='navbarNav'>
+          <div className={`${classOne}`} id='navbarSupportedContent'>
             <ul className='navbar-nav'>
-              <li className='nav-item active'>
+              <li className='nav-item' onClick={this.toggleNavbar}>
                 <Link className='nav-link' to='/'>
                   Imuebles <span className='sr-only'>(current)</span>
                 </Link>
               </li>
-              <li className='nav-item'>
+              {this.state.session.inicied ? (
+                <li className='nav-item' onClick={this.toggleNavbar}>
+                  <Link className='nav-link' to='/empleados'>
+                    Empleados <span className='sr-only'>(current)</span>
+                  </Link>
+                </li>
+              ) : (
+                ''
+              )}
+              <li className='nav-item' onClick={this.toggleNavbar}>
                 <Link className='nav-link' to='/empresa'>
                   Empresa
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item' onClick={this.toggleNavbar}>
                 <Link className='nav-link' to='/servicios'>
                   Servicios
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/contactos'>
-                  Contactos
                 </Link>
               </li>
             </ul>
           </div>
         </nav>
-        {props.children}
+        {this.props.children}
       </Fragment>
     );
   }

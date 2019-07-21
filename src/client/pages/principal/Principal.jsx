@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import Login from '../../login/Login';
+import Session from '../login/Session';
+import Login from '../login/Login';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Principal(props) {
+  const session = JSON.parse(localStorage.getItem('session'));
   return (
     <Fragment>
-      <hr />
       <br />
       <div className='container-fluid'>
         <div className='row'>
@@ -23,7 +24,11 @@ function Principal(props) {
           </div>
           <div className='col-7'>{props.children}</div>
           <div className='col-3'>
-            <Login />
+            {session.inicied ? (
+              <Session onSession={props.onSession} />
+            ) : (
+              <Login onSession={props.onSession} />
+            )}
           </div>
         </div>
       </div>
