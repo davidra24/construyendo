@@ -5,14 +5,20 @@ import './app.css';
 import './loading.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserCircle, faHome } from '@fortawesome/free-solid-svg-icons';
-library.add(faUserCircle, faHome);
+import {
+  faUserCircle,
+  faHome,
+  faTrash,
+  faEdit,
+  faCheck
+} from '@fortawesome/free-solid-svg-icons';
+library.add(faUserCircle, faHome, faTrash, faEdit, faCheck);
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      session: { inicied: false, user: null },
+      session: { inicied: false, user: null }
     };
     localStorage.setItem('session', JSON.stringify(this.state.session));
   }
@@ -21,7 +27,7 @@ class App extends Component {
   }
   handleChangeSesion = () => {
     this.setState({
-      session: JSON.parse(localStorage.getItem('session')),
+      session: JSON.parse(localStorage.getItem('session'))
     });
   };
   render() {
