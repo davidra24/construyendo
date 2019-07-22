@@ -10,8 +10,10 @@ import NotFound from '../../components/notFound/NotFound';
 const handleRender = (location) => {
   const session = JSON.parse(localStorage.getItem('session'));
   switch (location) {
-    case '/':
-      return <Inmuebles />;
+    case '/' || '/inmuebles':
+      return <Inmuebles api='/api/estates' />;
+    case '/inmuebles/:id':
+      return <Inmueble />;
     case '/empresa':
       return <Empresa />;
     case '/servicios':

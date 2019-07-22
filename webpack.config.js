@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+require('@babel/polyfill');
 
 const outputDirectory = 'dist';
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: ['@babel/polyfill', './src/client/index.js'],
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js',
@@ -34,6 +35,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
+  },
+  node: {
+    fs: 'empty',
   },
   devServer: {
     port: 3000,

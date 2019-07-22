@@ -1,6 +1,13 @@
 const express = require('express');
-const os = require('os');
+const path = require('path');
+require('./drivers/mongo-connection');
+const api = require('./api/api');
+const auth = require('./auth/auth');
 const app = express();
+const port = process.env.PORT || 8080;
 
 app.use(express.static('dist'));
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(port, () => console.log(`Listening on port ${port}!`));
+
+app.use('/api', api);
+app.use('/', auth);
