@@ -11,7 +11,7 @@ const estateSchema = new Schema({
   zone: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: String, required: true },
-  images: { type: Array, default: [] },
+  images: { type: Array, default: [] }
 });
 
 module.exports = mongoose.model('estate', estateSchema);

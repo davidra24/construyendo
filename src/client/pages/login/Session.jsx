@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Session extends Component {
   state = {
-    session: {},
+    session: JSON.parse(localStorage.getItem('session'))
   };
   getSession = () => {
     this.setState({ session: JSON.parse(localStorage.getItem('session')) });
@@ -19,7 +19,7 @@ class Session extends Component {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-12'>
-            <h2>Bienvenido {this.state.session.user}</h2>
+            <h2>Bienvenido {this.state.session.user.name}</h2>
             <button className='btn btn-block btn-danger' onClick={this.logout}>
               Cerrar sesión
             </button>

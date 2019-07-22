@@ -12,15 +12,15 @@ const handleRender = (location) => {
   switch (location) {
     case '/' || '/inmuebles':
       return <Inmuebles api='/api/estates' />;
-    case '/inmuebles/:id':
-      return <Inmueble />;
     case '/empresa':
       return <Empresa />;
     case '/servicios':
       return <Servicios />;
     case '/empleados':
-      return session.inicied ? <Empleados /> : <NotFound />;
+      return session.inicied ? <Empleados api='/api/users' /> : <NotFound />;
     default:
+      console.log(location);
+
       return <NotFound />;
   }
 };

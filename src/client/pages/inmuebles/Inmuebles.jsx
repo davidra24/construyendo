@@ -19,15 +19,26 @@ class Inmuebles extends Component {
       zone: '',
       description: '',
       price: '',
-      images: [],
-    },
+      images: []
+    }
+  };
+  clear = () => {
+    this.setState({
+      option: 'A',
+      property: 'L',
+      location: '',
+      zone: '',
+      description: '',
+      price: '',
+      images: []
+    });
   };
   addImages = (data) => {
     this.setState({
       form: {
         ...this.state.form,
-        images: data,
-      },
+        images: data
+      }
     });
     console.log(this.state);
   };
@@ -39,20 +50,20 @@ class Inmuebles extends Component {
     this.setState({
       form: {
         ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
   verifySession = () => {
     const storage = localStorage.getItem('session');
     this.setState({
-      session: JSON.parse(storage),
+      session: JSON.parse(storage)
     });
   };
   get = async () => {
     this.setState({
       loading: true,
-      error: null,
+      error: null
     });
     const response = await fetch(this.props.api);
     const data = await response.json();
@@ -63,34 +74,35 @@ class Inmuebles extends Component {
       this.MySwal.fire({
         title: 'Incorrecto',
         text: 'No se ha podido consultar los datos',
-        type: 'error',
+        type: 'error'
       });
     }
   };
   save = async (e) => {
     this.setState({
       loading: true,
-      error: null,
+      error: null
     });
     const response = await fetch(this.props.api, {
       method: 'POST',
       body: JSON.stringify(this.state.form),
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     });
+    this.clear();
     this.get();
     if (response.status === 200) {
       this.MySwal.fire({
         title: 'Correcto',
         text: 'Se ha guardado satisfactoriamente',
-        type: 'success',
+        type: 'success'
       });
     } else {
       this.MySwal.fire({
         title: 'Incorrecto',
         text: 'No se ha podido guardar',
-        type: 'error',
+        type: 'error'
       });
     }
   };

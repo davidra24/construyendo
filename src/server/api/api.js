@@ -3,6 +3,7 @@ const api = express.Router();
 const bodyParser = require('body-parser');
 const estateController = require('../controllers/estates');
 const userController = require('../controllers/users');
+const loginController = require('../controllers/login');
 
 api.use(bodyParser.json({ limit: '100mb' }));
 api.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
@@ -19,5 +20,7 @@ api.post('/estates', estateController.createEstate);
 api.get('/estates/:id', estateController.findEstate);
 api.put('/estates/:id', estateController.updateEstate);
 api.delete('/estates/:id', estateController.deleteEstate);
+
+api.post('/login', loginController.login);
 
 module.exports = api;

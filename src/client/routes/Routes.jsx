@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch, HashRouter as Router } from 'react-router-dom';
 import Home from '../pages/principal/Home';
+import Inmueble from '../pages/inmuebles/Inmueble';
 
 class Routes extends Component {
   state = {
@@ -19,6 +20,17 @@ class Routes extends Component {
     return (
       <Router>
         <Switch>
+          <Route
+            exact
+            path='/inmueble/:id'
+            component={(props) => (
+              <Inmueble
+                {...props}
+                onSession={this.props.onSession}
+                api='/api/estates/'
+              />
+            )}
+          />
           <Route
             strict
             path='/'

@@ -27,7 +27,7 @@ function Principal(props) {
             {session.inicied ? (
               <Session onSession={props.onSession} />
             ) : (
-              <Login onSession={props.onSession} />
+              <Login api='/api/login' onSession={props.onSession} />
             )}
           </div>
         </div>

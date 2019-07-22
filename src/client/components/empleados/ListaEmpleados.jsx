@@ -1,29 +1,23 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-function ImuebleItem(props) {
-  const inmueble = props.inmueble;
+function UsuarioItem(props) {
+  const usuario = props.usuario;
   return (
     <Fragment>
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-4'>
-            <strong>Opción: </strong>
-            <p>{inmueble.options === 'A' ? 'Arriendo' : 'Venta'}</p>
+            <strong>Apellidos: </strong>
+            <p>{usuario.secondName}</p>
           </div>
           <div className='col-12 col-md-4'>
-            <strong>Propiedad: </strong>
-            <p>
-              {inmueble.property === 'L'
-                ? 'Local'
-                : inmueble.property === 'C'
-                ? 'Casa'
-                : 'Apartamento'}
-            </p>
+            <strong>Nombres: </strong>
+            <p>{usuario.name}</p>
           </div>
           <div className='col-12 col-md-4'>
-            <strong>Precio: </strong>
-            <p>{inmueble.price}</p>
+            <strong>Correo electrónico: </strong>
+            <p>{usuario.email}</p>
           </div>
         </div>
       </div>
@@ -31,27 +25,28 @@ function ImuebleItem(props) {
   );
 }
 
-const ListaInmuebles = (props) => {
-  const { inmuebles } = props;
+const ListaEmpleados = (props) => {
+  const { usuarios } = props;
   if (props.error) {
     return <h4>Un error ha ocurrido al consultar los datos</h4>;
   }
   return (
     <Fragment>
       <ul className='list-group'>
-        {inmuebles.map((inmueble) => {
+        {usuarios.map((usuario) => {
+          console.log(usuario);
           return (
             <li
-              key={inmueble._id}
+              key={usuario._id}
               className='list-group-item'
               style={{ listStyleType: 'none' }}
             >
-              <Link
-                to={`/inmueble/${inmueble._id}`}
+              {/*<Link
+                to={`/usuario/${usuario._id}`}
                 className='text-reset text-decoration-none'
-              >
-                <ImuebleItem inmueble={inmueble} />
-              </Link>
+              >*/}
+              <UsuarioItem usuario={usuario} />
+              {/*</Link>*/}
             </li>
           );
         })}
@@ -60,4 +55,4 @@ const ListaInmuebles = (props) => {
   );
 };
 
-export default ListaInmuebles;
+export default ListaEmpleados;

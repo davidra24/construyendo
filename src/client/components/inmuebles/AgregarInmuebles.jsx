@@ -9,13 +9,11 @@ const customOptions = {
   buttonText: 'Subir imágenes',
   buttonClass: 'btn btn-info btn-block',
   multiple: true,
-  mimetype: 'image/*',
+  mimetype: 'image/*'
 };
 const callback = (fpfiles) => {
-  console.log(fpfiles);
   var array = [];
-  const files = fpfiles.map((file) => {
-    console.log(file);
+  fpfiles.map((file) => {
     const url = file.url.toString();
     array.push(url);
   });
@@ -52,8 +50,10 @@ const AgregarInmuebles = (props) => {
               name='option'
               value={props.formValues.option}
               type='text'
+              displayType={'text'}
               onChange={props.onChange}
-              className='form-control'>
+              className='form-control'
+            >
               {fillOptions()}
             </select>
           </div>
@@ -64,7 +64,8 @@ const AgregarInmuebles = (props) => {
               value={props.formValues.property}
               type='text'
               onChange={props.onChange}
-              className='form-control'>
+              className='form-control'
+            >
               {fillProperties()}
             </select>
           </div>
@@ -111,7 +112,9 @@ const AgregarInmuebles = (props) => {
             />
           </div>
           <div className='col-12'>
-            <label htmlFor=''>Imágenes</label>
+            <label htmlFor=''>
+              Imágenes {`(${props.formValues.images.length})`}
+            </label>
             <ReactFilepicker
               apikey={apikey}
               mode='pickMultiple'
@@ -124,6 +127,8 @@ const AgregarInmuebles = (props) => {
             <button onClick={props.save} className='btn btn-block btn-success'>
               Guardar
             </button>
+            <br />
+            <br />
           </div>
         </div>
       </div>

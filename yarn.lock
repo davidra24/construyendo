@@ -5368,6 +5368,13 @@ react-currency-format@^1.0.0:
   dependencies:
     prop-types "^15.6.0"
 
+react-day-picker@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.3.0.tgz#59b6d4e19d274650c79dcf49fbcce2637313467d"
+  integrity sha512-t2kz0Zy4P5U4qwU5YhsBq2QGmypP8L/u+89TSnuD0h4dYKSEDQArFPWfin9gv8erV1ciR1Wzr485TMaYnI7FTw==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
