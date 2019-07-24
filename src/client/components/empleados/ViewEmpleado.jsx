@@ -111,7 +111,7 @@ const ViewEmpleado = (props) => {
           <br />
           <br />
         </div>
-        {props.inicied ? (
+        {props.inicied && props.session.user.role != 'E' ? (
           <Fragment>
             {props.edited ? (
               <button

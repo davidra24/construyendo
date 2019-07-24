@@ -200,6 +200,7 @@ class Empleado extends Component {
                     onChange={this.handleChange}
                     onDayChange={this.handleDayChange}
                     formValues={this.state.form}
+                    session={this.state.session}
                   />
                 )
               ) : (
