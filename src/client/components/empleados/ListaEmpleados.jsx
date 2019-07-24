@@ -39,14 +39,12 @@ const ListaEmpleados = (props) => {
             <li
               key={usuario._id}
               className='list-group-item'
-              style={{ listStyleType: 'none' }}
-            >
-              {/*<Link
-                to={`/usuario/${usuario._id}`}
-                className='text-reset text-decoration-none'
-              >*/}
-              <UsuarioItem usuario={usuario} />
-              {/*</Link>*/}
+              style={{ listStyleType: 'none' }}>
+              <Link
+                to={`/empleado/${usuario._id}`}
+                className='text-reset text-decoration-none'>
+                <UsuarioItem usuario={usuario} />
+              </Link>
             </li>
           );
         })}

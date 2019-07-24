@@ -16,6 +16,7 @@ class Empleados extends Component {
     data: [],
     error: null,
     loading: true,
+    session: {},
     form: {
       document: '',
       name: '',
@@ -23,26 +24,33 @@ class Empleados extends Component {
       dateBorn: '',
       email: '',
       user: '',
-      password: ''
-    }
+      password: '',
+    },
+  };
+  verifySession = () => {
+    const storage = localStorage.getItem('session');
+    this.setState({
+      session: JSON.parse(storage),
+    });
   };
   handleChange = (e) => {
     this.setState({
       form: {
         ...this.state.form,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
   handleDayChange = (day) => {
     this.setState({
       form: {
         ...this.state.form,
-        dateBorn: day
-      }
+        dateBorn: day,
+      },
     });
   };
   componentDidMount() {
+    this.verifySession();
     this.get();
   }
   clear = () => {
@@ -54,14 +62,14 @@ class Empleados extends Component {
         dateBorn: '',
         email: '',
         user: '',
-        password: ''
-      }
+        password: '',
+      },
     });
   };
   get = async () => {
     this.setState({
       loading: true,
-      error: null
+      error: null,
     });
     const response = await fetch(this.props.api);
     const data = await response.json();
@@ -72,7 +80,7 @@ class Empleados extends Component {
       this.MySwal.fire({
         title: 'Incorrecto',
         text: 'No se ha podido consultar los datos',
-        type: 'error'
+        type: 'error',
       });
     }
   };
@@ -82,19 +90,19 @@ class Empleados extends Component {
         title: 'Incorrecto',
         text:
           'No se ha podido guardar, revise el formato de correo electrónico',
-        type: 'error'
+        type: 'error',
       });
     } else {
       this.setState({
         loading: true,
-        error: null
+        error: null,
       });
       const response = await fetch(this.props.api, {
         method: 'POST',
         body: JSON.stringify(this.state.form),
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
       await this.clear();
       await this.get();
@@ -102,13 +110,13 @@ class Empleados extends Component {
         this.MySwal.fire({
           title: 'Correcto',
           text: 'Se ha guardado satisfactoriamente',
-          type: 'success'
+          type: 'success',
         });
       } else {
         this.MySwal.fire({
           title: 'Incorrecto',
           text: 'No se ha podido guardar',
-          type: 'error'
+          type: 'error',
         });
       }
     }
@@ -119,12 +127,16 @@ class Empleados extends Component {
     }
     return (
       <div>
-        <AgregarEmpleados
-          formValues={this.state.form}
-          onChange={this.handleChange}
-          onDayChange={this.handleDayChange}
-          save={this.save}
-        />
+        {this.state.session.user.role != 'E' ? (
+          <AgregarEmpleados
+            formValues={this.state.form}
+            onChange={this.handleChange}
+            onDayChange={this.handleDayChange}
+            save={this.save}
+          />
+        ) : (
+          <div />
+        )}
         <ListaEmpleados usuarios={this.state.data} />
       </div>
     );

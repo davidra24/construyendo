@@ -11,6 +11,7 @@ const userSchema = new Schema({
   email: { type: String, required: true, match: new RegExp(regEx) },
   user: { type: String, required: true },
   password: { type: String, required: true },
+  role: { type: String, required: true, default: 'E' },
 });
 
 module.exports = mongoose.model('user', userSchema);
