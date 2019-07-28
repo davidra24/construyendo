@@ -13,7 +13,7 @@ class Inmuebles extends Component {
     error: null,
     session: {},
     form: {
-      option: 'A',
+      option: 'V',
       property: 'L',
       location: '',
       zone: '',
@@ -24,7 +24,7 @@ class Inmuebles extends Component {
   };
   clear = () => {
     this.setState({
-      option: 'A',
+      option: 'V',
       property: 'L',
       location: '',
       zone: '',

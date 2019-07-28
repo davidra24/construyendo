@@ -22,8 +22,8 @@ const callback = (fpfiles) => {
 const fillOptions = () => {
   return (
     <Fragment>
-      <option value='A'>Arriendo</option>
       <option value='V'>Venta</option>
+      <option value='A'>Arriendo</option>
     </Fragment>
   );
 };

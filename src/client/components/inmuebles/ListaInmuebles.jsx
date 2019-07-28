@@ -9,7 +9,7 @@ function ImuebleItem(props) {
         <div className='row'>
           <div className='col-12 col-md-4'>
             <strong>Opción: </strong>
-            <p>{inmueble.options === 'A' ? 'Arriendo' : 'Venta'}</p>
+            <p>{inmueble.option === 'V' ? 'Venta' : 'Arriendo'}</p>
           </div>
           <div className='col-12 col-md-4'>
             <strong>Propiedad: </strong>

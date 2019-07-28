@@ -21,8 +21,8 @@ const callback = (fpfiles) => {
 const fillOptions = () => {
   return (
     <Fragment>
-      <option value='A'>Arriendo</option>
       <option value='V'>Venta</option>
+      <option value='A'>Arriendo</option>
     </Fragment>
   );
 };
@@ -58,7 +58,7 @@ const ViewInmueble = (props) => {
               {fillOptions()}
             </select>
           ) : (
-            <p>{inmueble.options === 'A' ? 'Arriendo' : 'Venta'}</p>
+            <p>{inmueble.options === 'V' ? 'Venta' : 'Arriendo'}</p>
           )}
         </div>
         <div className='col-12 col-md-6'>

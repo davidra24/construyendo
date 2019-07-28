@@ -15,7 +15,7 @@ class Inmueble extends Component {
     error: null,
     session: {},
     form: {
-      option: 'A',
+      option: 'V',
       property: 'L',
       location: '',
       zone: '',

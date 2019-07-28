@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const estateSchema = new Schema({
-  //A => Arriend, V => Venta
-  option: { type: String, required: true, enum: ['A', 'V'] },
+  //V => Venta, A => Arriendo
+  option: { type: String, required: true, enum: ['V', 'A'] },
   //L => Lote, C => Casa, A => Apartamento
   property: { type: String, required: true, enum: ['L', 'C', 'A'] },
   location: { type: String, required: true },
