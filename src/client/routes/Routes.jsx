@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Route, Link, Switch, HashRouter as Router } from 'react-router-dom';
 import Home from '../pages/principal/Home';
 import Inmueble from '../pages/inmuebles/Inmueble';
+import Empleado from '../pages/empleados/Empleado';
 
 class Routes extends Component {
   state = {
-    login: {}
+    login: {},
   };
   componentDidMount() {
     this.verifyLogin();
@@ -13,7 +14,7 @@ class Routes extends Component {
   verifyLogin = () => {
     const login = JSON.parse(localStorage.getItem('session'));
     this.setState({
-      login
+      login,
     });
   };
   render() {
@@ -28,6 +29,17 @@ class Routes extends Component {
                 {...props}
                 onSession={this.props.onSession}
                 api='/api/estates/'
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/empleado/:id'
+            component={(props) => (
+              <Empleado
+                {...props}
+                onSession={this.props.onSession}
+                api='/api/users/'
               />
             )}
           />
