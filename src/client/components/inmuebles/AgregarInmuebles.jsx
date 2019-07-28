@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import ReactFilepicker from 'react-filepicker';
 import CurrencyFormat from 'react-currency-format';
 
-const apikey = 'A4yaj02SoQJeNfxPB2Agmz';
+const apikey = 'A8SGyhWtvQdGvLYDV7xWXz';
 var pr;
 
 const customOptions = {

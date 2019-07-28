@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CurrencyFormat from 'react-currency-format';
-const apikey = 'A4yaj02SoQJeNfxPB2Agmz';
+const apikey = 'A8SGyhWtvQdGvLYDV7xWXz';
 
 const fillOptions = () => {
   return (
@@ -38,11 +38,12 @@ const ViewInmueble = (props) => {
               type='text'
               displayType={'text'}
               onChange={props.onChange}
-              className='form-control'>
+              className='form-control'
+            >
               {fillOptions()}
             </select>
           ) : (
-            <p>{inmueble.options === 'V' ? 'Venta' : 'Arriendo'}</p>
+            <p>{inmueble.option === 'V' ? 'Venta' : 'Arriendo'}</p>
           )}
         </div>
         <div className='col-12 col-md-6'>
@@ -53,7 +54,8 @@ const ViewInmueble = (props) => {
               value={props.formValues.property}
               type='text'
               onChange={props.onChange}
-              className='form-control'>
+              className='form-control'
+            >
               {fillProperties()}
             </select>
           ) : (
@@ -146,19 +148,22 @@ const ViewInmueble = (props) => {
             {props.edited ? (
               <button
                 className='col-12 btn btn-block btn-success'
-                onClick={props.save}>
+                onClick={props.save}
+              >
                 <FontAwesomeIcon icon='check' size='3x' />
               </button>
             ) : (
               <button
                 className='col-12 btn btn-block btn-success'
-                onClick={props.edit}>
+                onClick={props.edit}
+              >
                 <FontAwesomeIcon icon='edit' size='3x' />
               </button>
             )}
             <button
               className='col-12 btn btn-block btn-danger'
-              onClick={props.handleRemove}>
+              onClick={props.handleRemove}
+            >
               <FontAwesomeIcon icon='trash' size='3x' />
             </button>
             <br />
